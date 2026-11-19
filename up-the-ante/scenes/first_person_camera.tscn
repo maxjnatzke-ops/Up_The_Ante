@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ci5pf3yk1iagi"]
+
+[node name="FirstPersonCamera" type="Camera3D" unique_id=362584235]

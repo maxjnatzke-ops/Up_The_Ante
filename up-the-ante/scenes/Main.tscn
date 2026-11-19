@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://il27kyrm48o6"]
+
+[ext_resource type="PackedScene" uid="uid://bi10k8upvdmk8" path="res://scenes/Player.tscn" id="1_elqb8"]
+[ext_resource type="Shader" uid="uid://kql2xmcwg8f" path="res://scenes/Main.gdshader" id="1_rvslj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xy6cu"]
+size = Vector3(15.831326, 0.47851563, 16.184494)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvslj"]
+render_priority = 0
+shader = ExtResource("1_rvslj")
+shader_parameter/floor_color = Color(0.12, 0.12, 0.12, 1)
+shader_parameter/line_color = Color(0.35, 0.35, 0.35, 1)
+shader_parameter/grid_size = 20.0
+shader_parameter/line_width = 0.025
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xy6cu"]
+size = Vector3(15.739306, 0.7449951, 16.06726)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_rvslj"]
+
+[sub_resource type="Sky" id="Sky_rvslj"]
+sky_material = SubResource("PhysicalSkyMaterial_rvslj")
+
+[sub_resource type="Environment" id="Environment_elqb8"]
+background_mode = 2
+sky = SubResource("Sky_rvslj")
+
+[node name="Node3D" type="Node3D" unique_id=1633436531]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2016811449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8399353, -0.2607422, 0.5270386)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1450908093]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7918453, 0, -0.34951591)
+mesh = SubResource("BoxMesh_xy6cu")
+surface_material_override/0 = SubResource("ShaderMaterial_rvslj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=681844004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8048539, -0.12750244, -0.41472244)
+shape = SubResource("BoxShape3D_xy6cu")
+debug_color = Color(4.813075e-07, 0.6100701, 0.6399985, 0.41960785)
+
+[node name="FirstPersonPlayer" parent="." unique_id=1770006180 instance=ExtResource("1_elqb8")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="FirstPersonPlayer" unique_id=1507371233]
+
+[node name="SpeedLabel" type="Label" parent="FirstPersonPlayer/CanvasLayer" unique_id=751155525]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "SPEED: 0.0 m/s"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=92990364]
+transform = Transform3D(0.9792648, 0.20157309, -0.02021813, 0.04676938, -0.12784296, 0.99069107, 0.1971119, -0.9710944, -0.13461956, 21.64406, 20.530441, -3.3357944)
+light_color = Color(0.9708161, 0.9454537, 0.8501839, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=279261165]
+environment = SubResource("Environment_elqb8")
